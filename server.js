@@ -6,6 +6,7 @@ var port = process.env.PORT || 3000;
 var xml = require('xml2js');
 var fs = require('fs');
 var util = require("util");
+var map = require("./lib/map");
 
 app.use(express.static(__dirname + '/public'));
 
@@ -16,19 +17,29 @@ console.log("Multiplayer Framework Started!");
 // SERVER -> CLIENT
 // Send Map: 0x01
 
-function readMap() {
-	map = fs.readFileSync("map.tmx", {encoding: 'utf8'});
-	xml.parseString(map, function(err, result) {
-		console.log(util.inspect(result['map']['layer'][0]['data'], false, null));
+function readMap(async) {
+	map_str = fs.readFileSync("map.tmx", {encoding: 'utf8'});
+	xml.parseString(map_str, function(err, result) {
+		game_map = new map();
+		game_map.parse_map(result['map']['layer'][0]['data'][0]["_"]);
+		async(game_map);
 	});
 }
-readMap();
+
+game_map = [];
+
+readMap(function(result) {
+	game_map = result;
+});
+
 io.on("connection", function(socket) {
-	console.log("User Connected");
-	socket.on(0x01, function() {
-		console.log("REQUEST MAP");
-		socket.emit(0x01, {x: 0, y: 0, map: "yep"});
-	});
+	if(game_map != []) {
+		console.log("User Connected");
+		socket.on(0x01, function() {
+			console.log("REQUEST MAP");
+			socket.emit(0x01, {x: 0, y: 0, map: game_map.map_data});
+		});
+	}
 });
 
 server.listen(port);
