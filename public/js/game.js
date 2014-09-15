@@ -6,15 +6,27 @@
  *
  */
 
+var map_palette = {
+	0x00: "floor",
+	0x04: "wall"
+}
+function getMapData(socket) {
+	socket.emit(0x01)
+	socket.on(0x01, function(data) {
+		map = data["map"]
+	});
+}
 var state = {
     init: function() {
 		// load map
+		this.socket = io();
     },
     preload: function() {
-		// State preload logic goes here
+		game.load.image('floor', 'img/floor.png');
+		game.load.image('wall', 'img/wall.png');
     },
     create: function(){
-		// State create logic goes here
+		
     },
     update: function() {
 		// State Update Logic goes here.
@@ -22,8 +34,8 @@ var state = {
 };
 
 var game = new Phaser.Game(
-    400,
-    240,
+    800,
+    480,
     Phaser.CANVAS,
     'vireo',
     state
