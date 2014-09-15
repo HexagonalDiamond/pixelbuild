@@ -7,8 +7,8 @@
  */
 
 var map_palette = {
-	"1": "floor",
-	"4": "wall"
+	"4": "floor",
+	"1": "wall"
 }
 function getMapData(socket, fn) {
 	socket.emit(0x01)
