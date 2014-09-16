@@ -35,9 +35,9 @@ readMap(function(result) {
 io.on("connection", function(socket) {
 	if(game_map != []) {
 		console.log("User Connected");
-		socket.on(0x01, function() {
+		socket.on(0x01, function(coords) {
 			console.log("REQUEST MAP");
-			socket.emit(0x01, {x: 0, y: 0, map: game_map.map_data});
+			socket.emit(0x01, {x: coords[0], y: coords[1], map: game_map.slice(coords[0]*32, coords[1]*32, 32, 32)});
 		});
 	}
 });
