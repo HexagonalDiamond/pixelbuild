@@ -17,12 +17,12 @@ console.log("Multiplayer Framework Started!");
 // SERVER -> CLIENT
 // Send Map: 0x01
 
-function readMap(async) {
+function readMap(callback) {
 	map_str = fs.readFileSync("map.tmx", {encoding: 'utf8'});
 	xml.parseString(map_str, function(err, result) {
 		game_map = new map();
 		game_map.parse_map(result['map']['layer'][0]['data'][0]["_"]);
-		async(game_map);
+		callback(game_map);
 	});
 }
 
@@ -36,7 +36,7 @@ io.on("connection", function(socket) {
 	if(game_map != []) {
 		console.log("User Connected");
 		socket.on(0x01, function(coords) {
-			console.log("REQUEST MAP");
+			console.log("REQUEST MAP"+coords[0]+coords[1]);
 			socket.emit(0x01, {x: coords[0], y: coords[1], map: game_map.slice(coords[0]*32, coords[1]*32, 32, 32)});
 		});
 	}
