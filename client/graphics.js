@@ -10,7 +10,6 @@ Graphics.prototype.loadAssets = function() {
 
 Graphics.prototype.preload = function() {
 	this.loadAssets();
-	this.resizeGame();
 }
 
 Graphics.prototype.create = function() {
@@ -45,19 +44,4 @@ Graphics.prototype.addGroupToChunk = function(chunk) {
 	}
 	chunk["group"] = group;
 	return chunk;
-}
-
-Graphics.prototype.resizeGame = function() {
-	if (!this.phaser.device.desktop) {
-    this.phaser.stage.scale.startFullScreen();
-    this.phaser.stage.scaleMode = Phaser.StageScaleMode.SHOW_ALL;
-    this.phaser.stage.scale.minWidth = 480;
-    this.phaser.stage.scale.minHeight = 260;
-    this.phaser.stage.scale.maxWidth = 1024;
-    this.phaser.stage.scale.maxHeight = 768;
-    this.phaser.stage.scale.forceLandscape = true;
-    this.phaser.stage.scale.setScreenSize(true);
-    this.phaser.stage.scale.setShowAll();
-    this.phaser.stage.scale.refresh();
-  }
 }

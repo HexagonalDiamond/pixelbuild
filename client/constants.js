@@ -13,7 +13,7 @@ tileset = {
 LOAD_RADIUS = 1 // 1 outside what the player can see
 
 // Width and height
-WIDTH = 
+WIDTH =
 
 // Taken from: http://stackoverflow.com/questions/7837456/comparing-two-arrays-in-javascript
 // attach the .equals method to Array's prototype to call it on any array

@@ -1,7 +1,6 @@
 VireoGame = function() {}
 
 VireoGame.prototype.initializeGame = function() {
-  //changeme!
 	this.phaser = new Phaser.Game(
 	    800,
 	    480,
@@ -9,7 +8,7 @@ VireoGame.prototype.initializeGame = function() {
 	    'vireo',
 	    this,
 	    false,
-	    false
+	    true
 	);
 /* 	this.phaser.config["forceSetTimeOut"] = true; */
 	this.entitymanager = new EntityManager(this);
@@ -24,7 +23,6 @@ VireoGame.prototype.preload = function() {
 	this.phaser.world.setBounds(0, 0, 20000, 20000);
 	this.phaser.camera.x = 0;
 	this.phaser.camera.y = 0;
-
 }
 
 VireoGame.prototype.create = function() {
@@ -56,4 +54,8 @@ VireoGame.prototype.render = function() {
 }
 
 game = new VireoGame();
+<<<<<<< HEAD
 game.initializeGame();
+=======
+game.initializeGame();
+>>>>>>> a11625d0095a9a010aea813c482b4e9f73bf9444
