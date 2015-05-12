@@ -54,8 +54,4 @@ VireoGame.prototype.render = function() {
 }
 
 game = new VireoGame();
-<<<<<<< HEAD
 game.initializeGame();
-=======
-game.initializeGame();
->>>>>>> a11625d0095a9a010aea813c482b4e9f73bf9444
