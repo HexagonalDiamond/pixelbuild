@@ -6,8 +6,8 @@ SEND_MAP = 0x01;
 
 //TILESET
 tileset = {
-	1: "wall",
-	4: "floor"
+	1: "grass",
+	2: "water"
 }
 
 LOAD_RADIUS = 1 // 1 outside what the player can see
@@ -65,4 +65,4 @@ Array.prototype.equals = function (array) {
         }
     }
     return true;
-}   
+}

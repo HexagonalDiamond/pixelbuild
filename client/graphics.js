@@ -14,21 +14,19 @@ Graphics.prototype.preload = function() {
 }
 
 Graphics.prototype.create = function() {
+	this.worldGroup = game.add.group();
 }
 
 Graphics.prototype.update = function() {
-
+	// game.iso.topologicalSort(this.worldGroup);
 }
 
 Graphics.prototype.addGroupToChunk = function(chunk) {
 	chunk_map = chunk["map"];
-	this.worldMap.push(chunk);
-	for(y in chunk_map) {
-		for(x in chunk_map[y]) {
-			var sprite = new Tile(this.game, 16*x+chunk["x"]*512, 16*y+chunk["y"]*512, 16, 16, tileset[chunk_map[y][x]]);
-			this.game.world.add(sprite);
-			this.worldGroup.push(sprite);
-			// console.log(sprite);
+	for(y = 0; y < chunk_map.length; y++) {
+		for(x = 0; x < chunk_map[y].length; x++) {
+			var sprite = new Phaser.Plugin.Isometric.IsoSprite(this.game, 32*x+chunk["x"]*512, 32*y+chunk["y"]*512, 0, 'mainTileset', tileset[chunk_map[y][x]])
+			this.worldGroup.add(sprite);
 		}
 	}
 	return chunk;

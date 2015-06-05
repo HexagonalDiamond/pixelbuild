@@ -1,8 +1,6 @@
 EntityManager = function(game) {
 	this.game = game;
 	this.entities = [];
-	this.player = new Player(game)
-	this.entities.push(this.player);
 }
 
 EntityManager.prototype.preload = function() {
@@ -15,6 +13,8 @@ EntityManager.prototype.preload = function() {
 }
 
 EntityManager.prototype.init = function() {
+	this.player = new Player(game)
+	this.entities.push(this.player);
 	for(entityIndex in this.entities) {
 		entity = this.entities[entityIndex];
 		if(entity.init) {

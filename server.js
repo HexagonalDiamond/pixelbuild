@@ -18,12 +18,10 @@ console.log("Multiplayer Framework Started!");
 // Send Map: 0x01
 
 function readMap(callback) {
-	map_str = fs.readFileSync("map.tmx", {encoding: 'utf8'});
-	xml.parseString(map_str, function(err, result) {
-		game_map = new map();
-		game_map.parse_map(result['map']['layer'][0]['data'][0]["_"]);
-		callback(game_map);
-	});
+	map_str = fs.readFileSync("map.csv", {encoding: 'utf8'});
+	game_map = new map();
+	game_map.parse_map(map_str);
+	callback(game_map);
 }
 
 game_map = [];

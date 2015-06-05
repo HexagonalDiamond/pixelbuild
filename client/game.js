@@ -4,7 +4,7 @@ VireoGame.prototype.initializeGame = function() {
 	this.phaser = new Phaser.Game(
 	    WIDTH,
 	    HEIGHT,
-	    Phaser.WEBGL,
+	    Phaser.AUTO,
 	    'vireo',
 	    this
 	);
@@ -18,9 +18,11 @@ VireoGame.prototype.initializeGame = function() {
 
 VireoGame.prototype.preload = function() {
 	this.phaser.plugins.add(new Phaser.Plugin.Isometric(game));
+	game.physics.startSystem(Phaser.Plugin.Isometric.ISOARCADE);
+	game.iso.anchor.setTo(0.5, 0);
 	game.time.advancedTiming = true;
 	this.graphicsmanager.preload();
-	this.phaser.world.setBounds(0, 0, 10000, 10000);
+	this.phaser.world.setBounds(0, 0, 800, 480);
 	this.phaser.camera.x = 500;
 	this.phaser.camera.y = 500;
 	this.entitymanager.preload();
@@ -32,6 +34,7 @@ VireoGame.prototype.create = function() {
 	this.tilemanager.create();
 	this.graphicsmanager.create();
 	this.entitymanager.init();
+	this.camera.follow(this.entitymanager.player);
 }
 
 VireoGame.prototype.update = function() {

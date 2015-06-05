@@ -38,8 +38,10 @@ Player.prototype.update = function(delta) {
 		this.y += actualSpeed;
 	}
 	// console.log(this.x, this.y)
-  this.phaser.camera.x = this.x;
-  this.phaser.camera.y = this.y;
 	this.sprite.x = this.x + (WIDTH / 2);
 	this.sprite.y = this.y + (HEIGHT / 2);
+}
+
+Player.prototype.postUpdate = function() {
+
 }
