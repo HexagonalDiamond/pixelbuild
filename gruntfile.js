@@ -10,7 +10,14 @@ module.exports = function(grunt){
         pkg: grunt.file.readJSON('package.json'),
 		concat: {
             dist: {
-                src: [ "client/constants.js", "client/entitymanager.js", "client/graphics.js", "client/multiplayermanager.js", "client/tilemanager.js", "client/game.js"],
+                src: [ 	"client/tile.js",
+												"client/entity/player.js",
+												"client/constants.js",
+												"client/entitymanager.js",
+												"client/graphics.js",
+												"client/multiplayermanager.js",
+												"client/tilemanager.js",
+												"client/game.js"],
                 dest: 'public/js/compiled.js'
             }
         },
@@ -26,7 +33,7 @@ module.exports = function(grunt){
 //             }
 //         }
     });
-	
+
     grunt.registerTask('default', ["concat", "server", "watch"]);
 
 };
