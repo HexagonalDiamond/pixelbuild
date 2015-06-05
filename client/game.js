@@ -17,6 +17,7 @@ VireoGame.prototype.initializeGame = function() {
 }
 
 VireoGame.prototype.preload = function() {
+	this.phaser.plugins.add(new Phaser.Plugin.Isometric(game));
 	game.time.advancedTiming = true;
 	this.graphicsmanager.preload();
 	this.phaser.world.setBounds(0, 0, 10000, 10000);
