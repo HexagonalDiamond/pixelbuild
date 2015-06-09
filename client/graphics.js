@@ -24,7 +24,7 @@ Graphics.prototype.addGroupToChunk = function(chunk) {
 	chunk_map = chunk["map"];
 	for(y = 0; y < chunk_map.length; y++) {
 		for(x = 0; x < chunk_map[y].length; x++) {
-			var sprite = new Phaser.Plugin.Isometric.IsoSprite(this.game, 32*x+chunk["x"]*512, 32*y+chunk["y"]*512, 0, 'mainTileset', tileset[chunk_map[y][x]])
+			var sprite = new Phaser.Plugin.Isometric.IsoSprite(this.game, (32*x)+(chunk["x"]*1024), (32*y)+(chunk["y"]*1024), 0, 'mainTileset', tileset[chunk_map[y][x]])
 			this.worldGroup.add(sprite);
 		}
 	}
