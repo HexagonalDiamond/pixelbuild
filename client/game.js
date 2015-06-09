@@ -25,6 +25,7 @@ VireoGame.prototype.preload = function() {
 	this.phaser.world.setBounds(0, 0, 800, 480);
 	this.phaser.camera.x = 500;
 	this.phaser.camera.y = 500;
+	this.phaser.camera.bounds = null;
 	this.entitymanager.preload();
 }
 
@@ -34,7 +35,6 @@ VireoGame.prototype.create = function() {
 	this.tilemanager.create();
 	this.graphicsmanager.create();
 	this.entitymanager.init();
-	this.camera.follow(this.entitymanager.player);
 }
 
 VireoGame.prototype.update = function() {

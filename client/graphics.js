@@ -29,5 +29,6 @@ Graphics.prototype.addGroupToChunk = function(chunk) {
 			this.worldGroup.add(sprite);
 		}
 	}
+	game.iso.simpleSort(this.worldGroup);
 	return chunk;
 }

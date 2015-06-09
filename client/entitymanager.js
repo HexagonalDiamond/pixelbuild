@@ -27,7 +27,7 @@ EntityManager.prototype.update = function() {
 	for(entityIndex in this.entities) {
 		entity = this.entities[entityIndex];
 		if(entity.update) {
-			entity.update(this.game.phaser.time.elapsedMS / 10);
+			entity.update(this.game.phaser.time.elapsed / 10);
 		}
 	}
 }

@@ -5,8 +5,8 @@ Player = function(game) {
 
 Player.spriteImg = "player"
 Player.speed = 3 // pixels per second
-Player.prototype.x = 0;
-Player.prototype.y = 0;
+Player.prototype.left = 0;
+Player.prototype.top = 0;
 // Player.prototype.sprite = null;
 
 Player.prototype.preload = function() {
@@ -16,8 +16,6 @@ Player.prototype.preload = function() {
 
 Player.prototype.init = function() {
 	this.sprite = game.add.sprite(this.x, this.y, Player.spriteImg);
-	// this.sprite.z = ;  // render above everything else
-	console.log(this.sprite)
 }
 
 Player.prototype.render = function() {
@@ -26,20 +24,19 @@ Player.prototype.render = function() {
 
 Player.prototype.update = function(delta) {
   actualSpeed = delta * Player.speed;
-	// console.log(delta);
   if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-        this.x -= actualSpeed;
+        this.left -= actualSpeed;
     } else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-		this.x += actualSpeed;
+		this.left += actualSpeed;
 	}
   if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-        this.y -= actualSpeed;
+        this.top -= actualSpeed;
     } else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-		this.y += actualSpeed;
+		this.top += actualSpeed;
 	}
-	// console.log(this.x, this.y)
-	this.sprite.x = this.x + (WIDTH / 2);
-	this.sprite.y = this.y + (HEIGHT / 2);
+	this.sprite.x = this.left + (WIDTH / 2);
+	this.sprite.y = this.top + (HEIGHT / 2);
+	this.phaser.camera.focusOn(this.sprite);
 }
 
 Player.prototype.postUpdate = function() {
