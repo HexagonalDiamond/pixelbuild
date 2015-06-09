@@ -17,10 +17,10 @@ VireoGame.prototype.initializeGame = function() {
 }
 
 VireoGame.prototype.preload = function() {
+    this.phaser.time.advancedTiming = true;
 	this.phaser.plugins.add(new Phaser.Plugin.Isometric(game));
 	game.physics.startSystem(Phaser.Plugin.Isometric.ISOARCADE);
 	game.iso.anchor.setTo(0.5, 0);
-	game.time.advancedTiming = true;
 	this.graphicsmanager.preload();
 	this.phaser.world.setBounds(0, 0, 800, 480);
 	this.phaser.camera.x = 500;

@@ -4,17 +4,15 @@ EntityManager = function(game) {
 }
 
 EntityManager.prototype.preload = function() {
-	for(entityIndex in this.entities) {
+    this.player = new Player(game);
+    this.entities.push(this.player);
+	for(var entityIndex = 0; entityIndex < this.entities.length; entityIndex++) {
 		entity = this.entities[entityIndex];
-		if(entity.preload) {
-			entity.preload();
-		}
+		entity.preload();
 	}
 }
 
 EntityManager.prototype.init = function() {
-	this.player = new Player(game)
-	this.entities.push(this.player);
 	for(entityIndex in this.entities) {
 		entity = this.entities[entityIndex];
 		if(entity.init) {
@@ -27,7 +25,7 @@ EntityManager.prototype.update = function() {
 	for(entityIndex in this.entities) {
 		entity = this.entities[entityIndex];
 		if(entity.update) {
-			entity.update(this.game.phaser.time.elapsed / 10);
+			entity.update(this.game.time.elapsed / 10);
 		}
 	}
 }
