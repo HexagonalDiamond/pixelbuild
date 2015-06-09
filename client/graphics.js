@@ -18,7 +18,6 @@ Graphics.prototype.create = function() {
 }
 
 Graphics.prototype.update = function() {
-	// game.iso.topologicalSort(this.worldGroup);
 }
 
 Graphics.prototype.addGroupToChunk = function(chunk) {
@@ -29,6 +28,6 @@ Graphics.prototype.addGroupToChunk = function(chunk) {
 			this.worldGroup.add(sprite);
 		}
 	}
-	game.iso.simpleSort(this.worldGroup);
+	game.iso.simpleSort(this.worldGroup); // sort when adding new tiles
 	return chunk;
 }

@@ -6,8 +6,8 @@ SEND_MAP = 0x01;
 
 //TILESET
 tileset = {
-	1: "grass",
-	2: "water"
+	0: "grass",
+	1: "water"
 }
 
 LOAD_RADIUS = 1 // 1 outside what the player can see
