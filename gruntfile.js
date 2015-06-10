@@ -24,8 +24,11 @@ module.exports = function(grunt){
 		watch: {
 		    js: {
 		        files: ['*', 'client/**/*.js', 'public/*', 'public/css/*', 'public/img/*'],
-		        tasks: ['concat']
-		    }
+		        tasks: ['concat'],
+            options: {
+              livereload: true
+            }
+		    },
 		},
 		// open: {
 //             dev: {
