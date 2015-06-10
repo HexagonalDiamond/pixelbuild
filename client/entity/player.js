@@ -5,8 +5,6 @@ Player = function(game) {
 
 Player.spriteImg = "player"
 Player.speed = 3
-Player.speedX = Player.speed * Math.sqrt(3);
-Player.speedY = Player.speed;
 Player.prototype.left = 0;
 Player.prototype.top = 0;
 // Player.prototype.sprite = null;
@@ -16,7 +14,8 @@ Player.prototype.preload = function() {
 }
 
 Player.prototype.init = function() {
-	this.sprite = game.add.sprite(this.x, this.y, Player.spriteImg);
+	this.sprite = this.game.add.isoSprite(this.x, this.y, 1, Player.spriteImg);
+  this.game.camera.follow(this.sprite);
 }
 
 Player.prototype.render = function() {
@@ -24,21 +23,23 @@ Player.prototype.render = function() {
 }
   
 Player.prototype.update = function(delta) {
-  actualSpeedX = delta * Player.speedX;
-  actualSpeedY = delta * Player.speedY;
+  actualSpeed = delta * Player.speed;
   if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
-      this.left -= actualSpeedX;
+    this.left -= actualSpeed;
+    this.top += actualSpeed;
   } else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
-		this.left += actualSpeedX;
+		this.left += actualSpeed;
+    this.top -= actualSpeed;
 	}
   if (game.input.keyboard.isDown(Phaser.Keyboard.UP)) {
-      this.top -= actualSpeedY;
+    this.top -= actualSpeed;
+    this.left -= actualSpeed;
   } else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
-		this.top += actualSpeedY;
+		this.top += actualSpeed;
+    this.left += actualSpeed;
 	}
-	this.sprite.x = this.left + (WIDTH / 2);
-	this.sprite.y = this.top + (HEIGHT / 2);
-	this.phaser.camera.focusOn(this.sprite);
+  this.sprite.isoX = this.left + (WIDTH / 2);
+  this.sprite.isoY = this.top + (HEIGHT / 2);
 }
 
 Player.prototype.postUpdate = function() {
