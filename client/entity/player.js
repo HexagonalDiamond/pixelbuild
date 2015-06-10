@@ -14,7 +14,9 @@ Player.prototype.preload = function() {
 }
 
 Player.prototype.init = function() {
+  this.playerGroup = this.game.add.group()
 	this.sprite = this.game.add.isoSprite(this.x, this.y, 1, Player.spriteImg);
+  this.text = this.game.add.text(this.sprite.x, this.sprite.y - 100, "Julian", { font: "18px Arial", fill: "#FFFFFF", align: "center" })
   this.game.camera.follow(this.sprite);
 }
 
@@ -40,6 +42,9 @@ Player.prototype.update = function(delta) {
 	}
   this.sprite.isoX = this.left + (WIDTH / 2);
   this.sprite.isoY = this.top + (HEIGHT / 2);
+  this.sprite._project();
+  this.text.x = this.sprite.x  + (this.sprite.width / 2) - (this.text.width / 2);
+  this.text.y = this.sprite.y - 35;
 }
 
 Player.prototype.postUpdate = function() {
