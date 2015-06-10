@@ -7,6 +7,7 @@ var xml = require('xml2js');
 var fs = require('fs');
 var util = require("util");
 var map = require("./lib/map");
+var Player = require("./player");
 
 app.use(express.static(__dirname + '/public'));
 
@@ -25,18 +26,34 @@ function readMap(callback) {
 }
 
 game_map = [];
+entities = [];
+
+function updateEntities() {
+  for(var entityIndex = 0; entityIndex < entities.length; entityIndex++) {
+    if(entities[entityIndex].update != undefined) {
+      entities[entityIndex].update();
+    }
+  }
+}
+
+setInterval(updateEntities, 16);
 
 readMap(function(result) {
 	game_map = result;
 });
 
 io.on("connection", function(socket) {
+  player = new Player()
+  entities.push(player);
 	if(game_map != []) {
 		console.log("User Connected");
 		socket.on(0x01, function(coords) {
 			console.log("REQUEST MAP"+coords[0]+coords[1]);
 			socket.emit(0x01, {x: coords[0], y: coords[1], map: game_map.slice(coords[0]*32, coords[1]*32, 32, 32)});
 		});
+    socket.on(0x02, function(keyInfo) {
+      player.move(keyInfo.x, keyInfo.y)
+    });
 	}
 });
 

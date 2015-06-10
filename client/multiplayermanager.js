@@ -9,11 +9,17 @@ MultiplayerManager.prototype.create = function() {
 MultiplayerManager.prototype.update = function() {
 	
 }
+MultiplayerManager.prototype.sendMovementInfo = function(x, y) {
+  this.socket.emit(KEY_INFO, {
+    x: x,
+    y: y
+  });
+}
 
 MultiplayerManager.prototype.requestChunk = function(x, y, callback, obj) {
-	this.socket.emit(0x01, [x, y]);
+	this.socket.emit(REQUEST_MAP, [x, y]);
 	// console.log([x, y]);
-	this.socket.on(0x01, function(data) {
+	this.socket.on(SEND_MAP, function(data) {
 		callback(data, obj);
 	});
 }
