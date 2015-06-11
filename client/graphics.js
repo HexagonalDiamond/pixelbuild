@@ -29,6 +29,6 @@ Graphics.prototype.addGroupToChunk = function(chunk) {
 		}
 	}
   // REMEMBER TO USE this.phaser.iso! this.game.iso does not work!
-	this.phaser.iso.simpleSort(this.worldGroup); // sort when adding new tiles
+  this.phaser.iso.simpleSort(this.worldGroup); // sort when adding new tiles
 	return chunk;
 }

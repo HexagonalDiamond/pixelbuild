@@ -8,8 +8,7 @@ VireoGame.prototype.initializeGame = function() {
 	    'vireo',
 	    this
 	);
-  
-	this.phaser.config["forceSetTimeOut"] = false;
+	this.phaser.config["forceSetTimeOut"] = true;
 	this.entitymanager = new EntityManager(this);
 	this.tilemanager = new TileManager(this);
 	this.multiplayer = new MultiplayerManager(this);
@@ -19,6 +18,7 @@ VireoGame.prototype.initializeGame = function() {
 
 VireoGame.prototype.preload = function() {
     this.phaser.time.advancedTiming = true;
+    this.phaser.time.desiredFps = 120;
     this.phaser.plugins.add(new Phaser.Plugin.Isometric(this.phaser));
 	game.physics.startSystem(Phaser.Plugin.Isometric.ISOARCADE);
     // game.iso.anchor.setTo(0.5, 0);

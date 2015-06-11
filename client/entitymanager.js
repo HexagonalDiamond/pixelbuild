@@ -13,7 +13,7 @@ EntityManager.prototype.preload = function() {
 }
 
 EntityManager.prototype.init = function() {
-	for(entityIndex in this.entities) {
+	for(var entityIndex = 0; entityIndex < this.entities.length; entityIndex++) {
 		entity = this.entities[entityIndex];
 		if(entity.init) {
 			entity.init();
@@ -22,8 +22,8 @@ EntityManager.prototype.init = function() {
 }
 
 EntityManager.prototype.update = function() {
-	for(entityIndex in this.entities) {
-		entity = this.entities[entityIndex];
+	for(var entityIndex = 0; entityIndex < this.entities.length; entityIndex++) {
+    entity = this.entities[entityIndex];
 		if(entity.update) {
 			entity.update(this.game.time.elapsedMS / 1000);
 		}
@@ -31,7 +31,7 @@ EntityManager.prototype.update = function() {
 }
 
 EntityManager.prototype.render = function() {
-	for(entityIndex in this.entities) {
+	for(var entityIndex = 0; entityIndex < this.entities.length; entityIndex++) {
 		entity = this.entities[entityIndex];
 		if(entity.render) {
 			entity.render();
