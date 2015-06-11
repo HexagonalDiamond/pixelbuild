@@ -7,14 +7,14 @@ EntityManager.prototype.preload = function() {
     this.player = new Player(game);
     this.entities.push(this.player);
 	for(var entityIndex = 0; entityIndex < this.entities.length; entityIndex++) {
-		entity = this.entities[entityIndex];
+		var entity = this.entities[entityIndex];
 		entity.preload();
 	}
 }
 
 EntityManager.prototype.init = function() {
 	for(var entityIndex = 0; entityIndex < this.entities.length; entityIndex++) {
-		entity = this.entities[entityIndex];
+		var entity = this.entities[entityIndex];
 		if(entity.init) {
 			entity.init();
 		}
@@ -23,7 +23,7 @@ EntityManager.prototype.init = function() {
 
 EntityManager.prototype.update = function() {
 	for(var entityIndex = 0; entityIndex < this.entities.length; entityIndex++) {
-    entity = this.entities[entityIndex];
+    var entity = this.entities[entityIndex];
 		if(entity.update) {
 			entity.update(this.game.time.elapsedMS / 1000);
 		}
@@ -32,7 +32,7 @@ EntityManager.prototype.update = function() {
 
 EntityManager.prototype.render = function() {
 	for(var entityIndex = 0; entityIndex < this.entities.length; entityIndex++) {
-		entity = this.entities[entityIndex];
+		var entity = this.entities[entityIndex];
 		if(entity.render) {
 			entity.render();
 		}
