@@ -4,7 +4,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-open');
 	grunt.registerTask('server', 'Runs socket.io and express server', function() {
-		require("./server");
+		require("./server/server");
 	});
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),

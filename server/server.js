@@ -6,10 +6,10 @@ var port = process.env.PORT || 3000;
 var xml = require('xml2js');
 var fs = require('fs');
 var util = require("util");
-var map = require("./lib/map");
+var map = require("./map");
 var Player = require("./player");
-
-app.use(express.static(__dirname + '/public'));
+console.log(__dirname + '../public');
+app.use(express.static(__dirname + '/../public'));
 
 console.log("Multiplayer Framework Started!");
 // Action Codes
